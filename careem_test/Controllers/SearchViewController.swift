@@ -10,7 +10,7 @@ import PYSearch
 
 class SearchViewController: PYSearchViewController {
     
-    private let viewModel/*: SearchViewModelProtocol*/ = SearchViewModel()//SearchViewModel<SearchQueryModel>()
+    private let viewModel = SearchViewModel()
     
     override func awakeFromNib() {
         super.awakeFromNib()
@@ -34,6 +34,7 @@ class SearchViewController: PYSearchViewController {
     }
     
     func configureResultController() -> UIViewController {
+        //todo add SwiftGen to avoid using strings and make code more type-safe
         let storyboard = UIStoryboard(name: "Main", bundle: Bundle.main)
         //can not specify generic UIViewController<ResultViewControllerProtocol> due to Storyboard initialization
         let vc = storyboard.instantiateViewController(withIdentifier: "ResultViewControllerId") as! ResultViewController

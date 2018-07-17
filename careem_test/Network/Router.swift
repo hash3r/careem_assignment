@@ -14,29 +14,28 @@ import ObjectMapper
 public struct Router {
 
     private let target: TargetType
+
+    private func url() -> URL {
+        let fullUrl = target.baseUrl() + target.path()
+        return URL(string: fullUrl.encodeURLQuery())!
+    }
+    
+    private func headers() -> HTTPHeaders {
+        let headers = HTTPHeaders()
+        //        headers["Content-Type"] = "application/json"
+        return headers
+    }
     
     init(_ target: TargetType) {
         self.target = target
     }
 }
 
+// MARK: URLRequestConvertible
 extension Router: URLRequestConvertible {
 
-    var url: URL {
-        let fullUrl = target.baseUrl() + target.path()
-        return URL(string: fullUrl.encodeURLQuery())!
-    }
-    
-    func headers() -> HTTPHeaders {
-        let headers = HTTPHeaders()
-//        headers["Content-Type"] = "application/json"
-        return headers
-    }
-    
-    // MARK: URLRequestConvertible
-
     public func asURLRequest() -> URLRequest {
-        var request = try! URLRequest(url: url, method: target.method(), headers: headers())
+        var request = try! URLRequest(url: url(), method: target.method(), headers: headers())
         request.httpMethod = target.method().rawValue
         
         if let params = target.params() {

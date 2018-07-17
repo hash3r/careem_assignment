@@ -23,6 +23,10 @@ open class Rest {
     /// Alamofire manager  that responsible for creating and managing `Request` objects
     fileprivate let manager = SessionManager()
     
+    /// Method requests for data and serializes it to a given model type
+    ///
+    /// - Parameter target: endpoint to get data
+    /// - Returns: promise with a given model type
     func mappableRequest<T: BaseMappable>(_ target: TargetType) -> Promise<T> {
         
         return Promise<T> { seal in
@@ -44,6 +48,10 @@ open class Rest {
         }
     }
     
+    /// Method requests for data and serializes it to an array of given model type
+    ///
+    /// - Parameter target: endpoint to get data
+    /// - Returns: promise with an array of given model type
     func arrayMappableRequest<T: BaseMappable>(_ target: TargetType) -> Promise<[T]> {
         
         return Promise<[T]> { seal in

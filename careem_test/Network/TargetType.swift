@@ -11,6 +11,7 @@ import Alamofire
 public typealias PathType = String
 public typealias ParametersType = Any // [String: AnyObject]
 
+/// Protocol describes endpoints metadata
 public protocol TargetType {
     
     func baseUrl() -> PathType
@@ -19,8 +20,9 @@ public protocol TargetType {
     func params() -> ParametersType?
 }
 
+/// implement default behaviour
 extension TargetType {
-    //implement default behaviour
+    
     func params() -> ParametersType? {
         return nil
     }

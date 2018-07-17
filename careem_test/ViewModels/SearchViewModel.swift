@@ -15,9 +15,10 @@ class SearchViewModel: SearchViewModelProtocol {
     
     typealias QueryType = SearchQueryModel
     
-    /// current query model
+    /// Container for all parameters in query
     private(set) var queryModel = SearchQueryModel()
-    /// recent queries models & strings
+    
+    /// Recent queries models & strings
     private(set) var suggestions = List<SearchQueryModel>()
     private(set) var suggestionsStrings = [String]()
     
