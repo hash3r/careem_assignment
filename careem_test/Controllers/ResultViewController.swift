@@ -43,7 +43,9 @@ class ResultViewController: UIViewController, ResultViewControllerProtocol {
             //todo show alert with error description
             self?.updateUI()
             if (initial) {
-                self?.delegate?.didFailToLoadMovies(self!, error: error)
+                if let sself = self {
+                    sself.delegate?.didFailToLoadData(sself, error: error)
+                }
             }
         }
     }
@@ -61,7 +63,7 @@ class ResultViewController: UIViewController, ResultViewControllerProtocol {
     
     func saveQuery() {
         if (self.dataSource().count > 0) {
-            self.delegate?.didLoadMovies(self)
+            self.delegate?.didLoadData(self)
         }
     }
     

@@ -62,13 +62,13 @@ extension SearchViewController: PYSearchViewControllerDelegate {
 
 extension SearchViewController: ResultViewControllerDelegate {
     
-    func didLoadMovies(_ controller: ResultViewControllerProtocol) {
+    func didLoadData(_ controller: ResultViewControllerProtocol) {
         if let queryModel = controller.queryModel {
             viewModel.storeQuery(query: queryModel)
         }
     }
     
-    func didFailToLoadMovies(_ controller: ResultViewControllerProtocol, error: Error) {
+    func didFailToLoadData(_ controller: ResultViewControllerProtocol, error: Error) {
         // handle errors if needed
     }
 }
