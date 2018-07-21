@@ -23,12 +23,6 @@ class ResultViewController: UIViewController, ResultViewControllerProtocol {
         configureTableView()
     }
     
-    func configureTableView() {
-        tableView.tableFooterView = UIView()
-        tableView.rowHeight = UITableViewAutomaticDimension
-        tableView.estimatedRowHeight = 100
-    }
-    
     func loadData(initial: Bool = false) {
         guard let queryModel = queryModel else { return }
         
@@ -50,7 +44,13 @@ class ResultViewController: UIViewController, ResultViewControllerProtocol {
         }
     }
 
-    func updateUI() {
+    private  func configureTableView() {
+        tableView.tableFooterView = UIView()
+        tableView.rowHeight = UITableViewAutomaticDimension
+        tableView.estimatedRowHeight = 100
+    }
+    
+    private func updateUI() {
         if dataSource().count == 0 {
             noSearchResultsLabel.isHidden = false
             tableView.isHidden = true
@@ -61,13 +61,13 @@ class ResultViewController: UIViewController, ResultViewControllerProtocol {
         }
     }
     
-    func saveQuery() {
+    private func saveQuery() {
         if (self.dataSource().count > 0) {
             self.delegate?.didLoadData(self)
         }
     }
     
-    func dataSource() -> [MovieModel] {
+    private func dataSource() -> [MovieModel] {
         return viewModel.searchMovies
     }
 }
